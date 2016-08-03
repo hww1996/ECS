@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>博文</title>
+	</head>
+	<link href="/static/css/article.css" type="text/css" rel="stylesheet" />
+	<body>
+	<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+		<div class="whole_header">
+			<div class="nav">
+				<div style="width: 1120px; margin: 0 auto">
+					<div class="inner_nav1">
+						<a style="font-size: 24px;" href='/'>hww的博客</a>
+						<a href="/">首页</a>
+						<a href='/'>发的总共的贴</a>
+					</div>
+					<div class="inner_nav2">
+						<a href="/admin">管理</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<div class="body">
+			<div>
+				<h1 style="font-size:35px">{{article.title}}</h1>
+				<div>
+					<strong style="font-size:15px;">标签： </strong>
+					{%for i in article.category.all%}
+						<a style="color:#F5FFFA;border: 1px solid #000;" href='/category/{{i.name}}'><span style="background-color: #5e5e5e;">{{i.name}}</span></a>
+					{%endfor%}
+				</div>
+				<br/>
+				<span style="font-size:15px;">发布时间:<strong>{{article.First_time|date:"Y-m-d H:i:s"}}</strong></span>
+				<span style="float:right;font-size:15px;">修改时间:<strong>{{article.Revise_time|date:"Y-m-d H:i:s"}}</strong></span>
+				<hr>
+				<p>{{article.content|safe}}</p>
+			</div>
+			<div style="border-bottom: 4px double #ddd;height: 4px;margin: 20px 0;"></div>
+			<p><strong>以下是评论：</strong></p>
+			{% load comments %}
+			{% get_comment_count for article as comment_count %}
+			<p>共有{{ comment_count }}个评论</p>
+			<div>
+				{% get_comment_list for article as comment_list %}
+				{% for comment in comment_list reversed%}
+					<strong style="font-size:20px">{{comment.user|default:"匿名用户"}} </strong><span style="color:#777;">{{comment.submit_date|date:"Y-m-d H:i:s"}}</span>
+					<br/>
+					<p style="font-size:15px">{{comment.comment}}</p>
+					<hr/>
+				{% endfor %}
+			</div>
+			{% if user.is_authenticated %}
+				<p style="font-size:15px">若想<a href="/logout/">登出</a>请按这里</p>
+				<p  style="font-size:20px"><strong>{{user.username}}</strong>欢迎写评论：</p>
+			{% else %}
+				<p style="font-size:15px">请 <a href="/login/">登录</a> 或者<a href="/reg/">注册</a>，若不登录可以写匿名评论</p>
+			{%endif%}
+			<div class="comment_form">
+				{% render_comment_form for article %}
+			</div>
+		</div>
+		<footer>
+			<div class="text-center">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="text-muted">
+							<a href="https://www.djangoproject.com/">由django驱动</a>
+							<br/>
+							<a href="/introduce">Copyright © hww</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>{{category_name}}</title>
+</head>
+<body>
+<a href='/'>发的总共的贴</a>
+<br/>
+{% if category_all.has_previous %}
+	<a href="?page={{ category_all.previous_page_number }}">上一种类</a>
+{% endif %}
+分类：
+{%for j in category_all%}
+	<a href='/category/{{j.name}}'>{{j.name}}</a>
+{%endfor%}
+{% if category_all.has_next %}
+	<a href="?page={{ category_all.next_page_number }}">下一种类</a>
+{% endif %}
+<br/>
+当前种类：{{category_name}}
+<br/>
+文章： 
+{%for i in category_article%}
+	<a href="/article/{{i.title}}">{{i.title}}</a>
+{%endfor%}
+<div class="pagination" style="width:70%;margin:0 auto">
+							<span class="step-links">
+								{% if category_article.has_previous %}
+									<a href="?page={{ category_article.previous_page_number }}">上一页</a>
+								{% endif %}
+								<span class="current">
+									<span style="font-weight:bold;color:red;">当前：第{{ category_article.number }}页 ，共有：{{ category_article.paginator.num_pages }}页</span>
+								</span>
+								{% if category_article.has_next %}
+									<a href="?page={{ category_article.next_page_number }}">下一页</a>
+								{% endif %}
+							</span>
+					</div>
+</body>
+</html>

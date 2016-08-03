@@ -1,0 +1,65 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+	<link href="/static/css/login.css" type="text/css" rel="stylesheet" />
+		<div class="whole_header">
+			<div class="nav">
+				<div style="width: 1120px; margin: 0 auto">
+					<div class="inner_nav1">
+						<a style="font-size: 24px;" href='/'>hww的博客</a>
+						<a href="/">首页</a>
+						<a href='/'>发的总共的贴</a>
+					</div>
+					<div class="inner_nav2">
+						<a href="/admin">管理</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+	{% load staticfiles %}
+	<div class="main">
+		<div class="header" >
+			<h1>注册一个新的用户！！</h1>
+		</div>
+			<form action="{% url 'reg' %}" method="post">
+                {% csrf_token %}
+					<p>
+						用户：{{ reg_form.username }}
+						<div class="clear"> </div>
+					</p> 
+					<p>
+						邮箱：{{ reg_form.email }}
+						<div class="clear"> </div>
+					</p> 
+					<p>
+                        密码：{{ reg_form.password }}
+						<div class="clear"> </div>
+					</p>
+                    <input type="hidden" name="source_url" value="{{ request.META.HTTP_REFERER }}">
+					<input class="btn" type="submit" value="创建">
+					<div class="clear"> </div>
+				<div class="clear"> </div>
+			</form>
+	</div>
+	<footer>
+			<div class="text-center">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="text-muted">
+							<a href="https://www.djangoproject.com/">由django驱动</a>
+							<br/>
+							<a href="/introduce">Copyright © hww</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+</body>
+</html>

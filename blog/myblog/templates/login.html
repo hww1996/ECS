@@ -1,0 +1,57 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+	<link href="/static/css/login.css" type="text/css" rel="stylesheet" />
+		<div class="whole_header">
+			<div class="nav">
+				<div style="width: 1120px; margin: 0 auto">
+					<div class="inner_nav1">
+						<a style="font-size: 24px;" href='/'>hww的博客</a>
+						<a href="/">首页</a>
+						<a href='/'>发的总共的贴</a>
+					</div>
+					<div class="inner_nav2">
+						<a href="/admin">管理</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+	<div class="main">
+		<div class="header" >
+			<h1>登录</h1>
+		</div>
+			<form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+				<p class="right-form">
+					<p>用户：<input type="text" name="username" placeholder="Username" required/></p>
+					<p>密码：<input type="password" name="password" placeholder="Password" required/></p>
+					<input type="hidden" name="source_url" value="{{ request.META.HTTP_REFERER }}">
+                    <input class="btn" type="submit" value="登录" >
+					<div class="clear"> </div>
+				</p>
+			</form>
+	</div>
+	<footer>
+			<div class="text-center">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="text-muted">
+							<a href="https://www.djangoproject.com/">由django驱动</a>
+							<br/>
+							<a href="/introduce">Copyright © hww</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+</body>
+</html>

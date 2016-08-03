@@ -1,0 +1,102 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>首页</title>
+</head>
+<body>
+<link href="/static/css/first_page.css" type="text/css" rel="stylesheet" />
+	<div class="whole_header">
+		<div class="nav">
+			<div style="width: 1120px; margin: 0 auto">
+				<div class="inner_nav1">
+					<a style="font-size: 24px;" href='/'>hww的博客</a>
+					<a href="/">首页</a>
+					<a href='/'>发的总共的贴</a>
+				</div>
+				<div class="inner_nav2">
+					<a href="/admin">管理</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+<div class="body">
+	
+		<div class="col-lg-4">
+			<div class="well">
+					<div class="h">
+					<strong>博客分类</strong>
+					<small style="font-size:10px;">
+					{% if more %}
+						<a href="/category/all/this">所有分类</a>
+					{%else%}
+						<p style="color:blue;">没有更多</p>
+					{% endif %}
+					</small>
+					</div>
+					<span class="row">
+						<div class="col-lg-12">
+							<ul class="list-unstyled" >
+								{% for j in category%}
+								<li><a style="font-size:18px;line-height:20px;font-weight:blod;" href='/category/{{j.name }}'>{{j.name }}</a>({{j.article_set.all|length}})</li>
+									
+								{%endfor%}
+							</ul>
+						</div>
+					</span>
+			</div>
+		</div>
+		<div class="col-lg-8">
+			<div class="article">
+				<div>
+					{%for i in contacts%}
+						<a style="font-size:30px;" href="/article/{{i.title}}">{{i.title}}</a>
+						<p>
+						<span>首先于<strong>{{i.First_time}}</strong>上传</span>
+						<span style="float:right;">于<strong>{{i.Revise_time}}</strong>修改</span>
+						</p>
+						<strong>标签：</strong>
+						{%for k in i.category.all%}
+							<a style="color:#F5FFFA;border: 1px solid #000;" href='/category/{{k.name}}'><span style="background-color: #5e5e5e;">{{k.name}}</span></a>
+						{%endfor%}
+						<hr style="height:1px;border:none;border-top:1px dashed #0066CC;"/>
+						<p><strong>{{i.sumarry}}</strong></p>
+						<a class="btn" style="background-color: #286090;border-color: #122b40;color: #fff;" href="/article/{{i.title}}">查看更多</a>
+						<div style="border-bottom: 4px double #ddd;height: 4px;margin: 20px 0;"></div>
+					{%endfor%}
+				</div>
+			</div>
+		</div>
+		<div class="pagination">
+			<span class="step-links">
+				{% if contacts.has_previous %}
+					<a href="?page={{ contacts.previous_page_number }}">上一页</a>
+				{% endif %}
+				<span class="current">
+					<span style="font-weight:bold;">当前：第{{ contacts.number }}页 ，共有：{{ contacts.paginator.num_pages }}页</span>
+				</span>
+				{% if contacts.has_next %}
+					<a href="?page={{ contacts.next_page_number }}">下一页</a>
+				{% endif %}
+			</span>
+		</div>
+		<footer>
+			<div class="text-center">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="text-muted">
+							<a href="https://www.djangoproject.com/">由django驱动</a>
+							<br/>
+							<a href="/introduce">Copyright © hww</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+</div>
+	
+</body>
+</html>
