@@ -44,7 +44,7 @@ class photoupdata(models.Model):
     photo_name = models.CharField('相片名字',max_length = 30,default='请输入相片的名字')
     usage=models.CharField('用于（什么的文章）',max_length=30,default='作死')
     time=models.DateTimeField('时间')
-    headImg = models.FileField('上传的图片',upload_to = './myblog/static/photo/')
+    headImg = models.FileField('上传的图片',upload_to = 'photo')
 
-    def __str__(self):
+    def __unicode__(self):
         return self.photo_name

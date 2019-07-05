@@ -37,14 +37,15 @@
 				<span style="font-size:15px;">发布时间:<strong>{{article.First_time|date:"Y-m-d H:i:s"}}</strong></span>
 				<span style="float:right;font-size:15px;">修改时间:<strong>{{article.Revise_time|date:"Y-m-d H:i:s"}}</strong></span>
 				<hr>
-				<p>{{article.content|safe}}</p>
+				<div class="articles">{{article.content|safe}}</div>
 			</div>
 			<div style="border-bottom: 4px double #ddd;height: 4px;margin: 20px 0;"></div>
 			<p><strong>以下是评论：</strong></p>
+            {%load threadedcomments_tags%}
 			{% load comments %}
 			{% get_comment_count for article as comment_count %}
 			<p>共有{{ comment_count }}个评论</p>
-			<div>
+			<div class="comments" >
 				{% get_comment_list for article as comment_list %}
 				{% for comment in comment_list reversed%}
 					<strong style="font-size:20px">{{comment.user|default:"匿名用户"}} </strong><span style="color:#777;">{{comment.submit_date|date:"Y-m-d H:i:s"}}</span>

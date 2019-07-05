@@ -7,8 +7,20 @@
     margin-bottom: 20px;
     min-height: 20px;
     padding: 19px;
-	width:30%;
+	width:50%;
 	margin-right:100px;
+}
+
+
+pre
+{
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    margin-bottom: 20px;
+    min-height: 20px;
+    padding: 5px;
 }
 
 body

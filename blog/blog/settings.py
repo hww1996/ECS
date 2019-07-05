@@ -41,10 +41,11 @@ INSTALLED_APPS = (
     'myblog',
     'ckeditor',
     'django_comments',
-    #'threadedcomments',
+    'threadedcomments',
+    'django_cleanup',
 )
 
-#COMMENTS_APP = 'threadedcomments'
+COMMENTS_APP = 'threadedcomments'
 SITE_ID = 1
 
 MIDDLEWARE_CLASSES = (
@@ -108,7 +109,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT=os.path.join(BASE_DIR,'static')
 
+MEDIA_URL='/media/'
+MEDIA_ROOT='/hww/ECS/blog/static/media'
 
 
 CKEDITOR_CONFIGS = {

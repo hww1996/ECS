@@ -41,7 +41,7 @@
 						<div class="col-lg-12">
 							<ul class="list-unstyled" >
 								{% for j in category%}
-								<li><a style="font-size:18px;line-height:20px;font-weight:blod;" href='/category/{{j.name }}'>{{j.name }}</a>({{j.article_set.all|length}})</li>
+								<li><a style="font-size:18px;line-height:20px;font-weight:blod;" href='/category/{{j.name }}' class="CategoryName">{{j.name }}</a>({{j.article_set.all|length}})</li>
 									
 								{%endfor%}
 							</ul>
@@ -53,17 +53,17 @@
 			<div class="article">
 				<div>
 					{%for i in contacts%}
-						<a style="font-size:30px;" href="/article/{{i.title}}">{{i.title}}</a>
+						<a style="font-size:30px;" href="/article/{{i.title}}" class="URLName" >{{i.title}}</a>
 						<p>
 						<span>首先于<strong>{{i.First_time}}</strong>上传</span>
 						<span style="float:right;">于<strong>{{i.Revise_time}}</strong>修改</span>
 						</p>
 						<strong>标签：</strong>
 						{%for k in i.category.all%}
-							<a style="color:#F5FFFA;border: 1px solid #000;" href='/category/{{k.name}}'><span style="background-color: #5e5e5e;">{{k.name}}</span></a>
+							<a style="color:#F5FFFA;border: 1px solid #000;" href='/category/{{k.name}}' class="Belong" ><span style="background-color: #5e5e5e;">{{k.name}}</span></a>
 						{%endfor%}
 						<hr style="height:1px;border:none;border-top:1px dashed #0066CC;"/>
-						<p><strong>{{i.sumarry}}</strong></p>
+						<p class="summary" ><strong>{{i.sumarry}}</strong></p>
 						<a class="btn" style="background-color: #286090;border-color: #122b40;color: #fff;" href="/article/{{i.title}}">查看更多</a>
 						<div style="border-bottom: 4px double #ddd;height: 4px;margin: 20px 0;"></div>
 					{%endfor%}

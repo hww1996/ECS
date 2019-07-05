@@ -35,7 +35,7 @@
 							<ul class="list-unstyled" >
 								{% for j in category%}
 								<li>
-									<a style="font-size:30px;line-height:40px;font-weight:blod;" href='/category/{{j.name }}'>{{j.name }}</a>({{j.article_set.all|length}})
+									<a style="font-size:30px;line-height:40px;font-weight:blod;" href='/category/{{j.name }}' class="Category" >{{j.name }}</a>({{j.article_set.all|length}})
 									<p>创建时间：{{j.time}}</p>
 									
 								</li>
